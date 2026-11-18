@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Motor driver module illustration">
+  <rect width="400" height="300" fill="#f1eadb"/>
+  <rect x="72" y="86" width="256" height="132" rx="12" fill="#1f574d"/>
+  <rect x="88" y="102" width="48" height="48" rx="6" fill="#14232a"/>
+  <g fill="#cfc5b2">
+    <rect x="96" y="112" width="8" height="28" rx="2"/>
+    <rect x="112" y="112" width="8" height="28" rx="2"/>
+    <rect x="128" y="112" width="8" height="28" rx="2"/>
+  </g>
+  <rect x="146" y="146" width="64" height="26" rx="4" fill="#14232a"/>
+  <g fill="#d99a2b">
+    <rect x="168" y="136" width="20" height="34" rx="3"/>
+  </g>
+  <rect x="224" y="100" width="86" height="42" rx="6" fill="#2f3b3e"/>
+  <rect x="224" y="156" width="86" height="42" rx="6" fill="#2f3b3e"/>
+  <g fill="#9aa7a2">
+    <circle cx="240" cy="112" r="4"/>
+    <circle cx="258" cy="112" r="4"/>
+    <circle cx="276" cy="112" r="4"/>
+    <circle cx="294" cy="112" r="4"/>
+    <circle cx="240" cy="130" r="4"/>
+    <circle cx="258" cy="130" r="4"/>
+    <circle cx="276" cy="130" r="4"/>
+    <circle cx="294" cy="130" r="4"/>
+    <circle cx="240" cy="168" r="4"/>
+    <circle cx="258" cy="168" r="4"/>
+    <circle cx="276" cy="168" r="4"/>
+    <circle cx="294" cy="168" r="4"/>
+    <circle cx="240" cy="186" r="4"/>
+    <circle cx="258" cy="186" r="4"/>
+    <circle cx="276" cy="186" r="4"/>
+    <circle cx="294" cy="186" r="4"/>
+  </g>
+  <g fill="#d8b65c">
+    <rect x="88" y="80" width="7" height="8" rx="2"/>
+    <rect x="104" y="80" width="7" height="8" rx="2"/>
+    <rect x="120" y="80" width="7" height="8" rx="2"/>
+    <rect x="136" y="80" width="7" height="8" rx="2"/>
+    <rect x="152" y="80" width="7" height="8" rx="2"/>
+    <rect x="168" y="80" width="7" height="8" rx="2"/>
+    <rect x="184" y="80" width="7" height="8" rx="2"/>
+    <rect x="200" y="80" width="7" height="8" rx="2"/>
+  </g>
+  <rect x="102" y="180" width="62" height="20" rx="4" fill="#d99a2b"/>
+  <rect x="126" y="184" width="14" height="12" rx="2" fill="#14232a"/>
+</svg>

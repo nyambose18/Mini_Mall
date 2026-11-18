@@ -1,0 +1,22 @@
+{
+  "name": "mini-mall",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c green,blue \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm --workspace server run dev",
+    "dev:client": "npm --workspace client run dev",
+    "seed": "npm --workspace server run seed",
+    "seed:reset": "npm --workspace server run seed:reset",
+    "test": "npm --workspace server test",
+    "build": "npm --workspace client run build",
+    "start": "npm --workspace server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

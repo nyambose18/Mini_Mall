@@ -1,0 +1,27 @@
+{
+  "name": "mini-mall-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "seed": "node src/seed/seed.js",
+    "seed:reset": "node src/seed/seed.js --reset",
+    "test": "node --test --test-concurrency=1 tests/auth.test.js tests/catalogue.test.js tests/checkout.test.js tests/fulfilment.test.js tests/refunds.test.js tests/stats.test.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^10.2.0",
+    "mongoose": "^8.12.1",
+    "multer": "^2.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.0"
+  }
+}

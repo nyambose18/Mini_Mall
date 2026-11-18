@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Microcontroller board illustration">
+  <rect width="400" height="300" fill="#f1eadb"/>
+  <rect x="82" y="66" width="236" height="168" rx="14" fill="#1f574d"/>
+  <g stroke="#d8b65c" stroke-width="4" fill="none" opacity="0.85">
+    <path d="M104 96h58v34h46"/>
+    <path d="M104 214h70v-30h44"/>
+    <path d="M286 100h-46v48"/>
+    <path d="M286 210h-50v-38"/>
+  </g>
+  <rect x="162" y="116" width="76" height="62" rx="6" fill="#14232a"/>
+  <g fill="#d8b65c">
+    <rect x="170" y="108" width="7" height="10" rx="2"/>
+    <rect x="184" y="108" width="7" height="10" rx="2"/>
+    <rect x="198" y="108" width="7" height="10" rx="2"/>
+    <rect x="212" y="108" width="7" height="10" rx="2"/>
+    <rect x="226" y="108" width="7" height="10" rx="2"/>
+    <rect x="170" y="176" width="7" height="10" rx="2"/>
+    <rect x="184" y="176" width="7" height="10" rx="2"/>
+    <rect x="198" y="176" width="7" height="10" rx="2"/>
+    <rect x="212" y="176" width="7" height="10" rx="2"/>
+    <rect x="226" y="176" width="7" height="10" rx="2"/>
+  </g>
+  <rect x="98" y="124" width="40" height="42" rx="5" fill="#cfc5b2"/>
+  <rect x="262" y="124" width="40" height="42" rx="5" fill="#d99a2b"/>
+  <rect x="262" y="124" width="40" height="8" rx="3" fill="#f1eadb" opacity="0.6"/>
+  <circle cx="114" cy="204" r="7" fill="#d99a2b"/>
+  <g fill="#d8b65c">
+    <rect x="76" y="96" width="8" height="7" rx="2"/>
+    <rect x="76" y="112" width="8" height="7" rx="2"/>
+    <rect x="76" y="128" width="8" height="7" rx="2"/>
+    <rect x="76" y="144" width="8" height="7" rx="2"/>
+    <rect x="316" y="96" width="8" height="7" rx="2"/>
+    <rect x="316" y="112" width="8" height="7" rx="2"/>
+    <rect x="316" y="128" width="8" height="7" rx="2"/>
+    <rect x="316" y="144" width="8" height="7" rx="2"/>
+  </g>
+</svg>

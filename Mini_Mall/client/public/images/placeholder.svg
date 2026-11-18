@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Part image placeholder">
+  <rect width="400" height="300" fill="#f1eadb"/>
+  <rect x="104" y="76" width="192" height="148" rx="16" fill="#fffdf8" stroke="#cfc5b2" stroke-width="2" stroke-dasharray="7 6"/>
+  <rect x="152" y="116" width="96" height="68" rx="8" fill="#1f574d"/>
+  <rect x="170" y="134" width="34" height="32" rx="4" fill="#d99a2b"/>
+  <circle cx="230" cy="142" r="5" fill="#f1eadb"/>
+  <circle cx="244" cy="142" r="5" fill="#f1eadb"/>
+  <circle cx="230" cy="160" r="5" fill="#f1eadb"/>
+  <circle cx="244" cy="160" r="5" fill="#f1eadb"/>
+  <g fill="#cfc5b2">
+    <rect x="152" y="106" width="8" height="8" rx="2"/>
+    <rect x="168" y="106" width="8" height="8" rx="2"/>
+    <rect x="184" y="106" width="8" height="8" rx="2"/>
+    <rect x="200" y="106" width="8" height="8" rx="2"/>
+    <rect x="216" y="106" width="8" height="8" rx="2"/>
+    <rect x="232" y="106" width="8" height="8" rx="2"/>
+  </g>
+</svg>
