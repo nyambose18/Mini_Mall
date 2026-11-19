@@ -58,6 +58,9 @@ export default function Layout() {
             ) : null}
             {user?.role === 'admin' ? (
               <>
+                <NavLink to="/admin/sellers" className={navClass}>
+                  Sellers
+                </NavLink>
                 <NavLink to="/admin/catalogue" className={navClass}>
                   Catalogue
                 </NavLink>
@@ -106,6 +109,9 @@ export default function Layout() {
                   <NavLink to="/admin/catalogue" className={navClass}>
                     Catalogue review
                   </NavLink>
+                  <NavLink to="/admin/sellers" className={navClass}>
+                    Seller applications
+                  </NavLink>
                   <NavLink to="/admin/orders" className={navClass}>
                     Orders &amp; refunds
                   </NavLink>
@@ -127,7 +133,8 @@ export default function Layout() {
         <div className="footer-inner">
           <div>
             <strong>Mini Mall</strong>
-            <p>A teaching marketplace for robotics, electronics and gadget parts in South Africa.</p>
+            <p>A teaching marketplace for IT networking, robotics and mechatronics parts in South Africa.</p>
+            <a href="/images/photos/credits.html" target="_blank" rel="noreferrer">Photo credits</a>
           </div>
           <div>
             <strong>Delivery and payment</strong>

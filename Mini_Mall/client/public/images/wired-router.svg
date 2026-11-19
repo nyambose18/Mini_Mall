@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Five-port wired router illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <path d="m64 142 34-42h204l34 42v69H64Z" fill="#cbd7dc"/>
+  <rect x="64" y="142" width="272" height="69" rx="7" fill="#344650"/>
+  <g fill="#b8cbd3"><rect x="90" y="165" width="32" height="26"/><rect x="133" y="165" width="32" height="26"/><rect x="176" y="165" width="32" height="26"/><rect x="219" y="165" width="32" height="26"/></g>
+  <rect x="277" y="165" width="32" height="26" fill="#369bd2"/>
+  <g fill="#13282e"><path d="M95 170h22v14H95zM138 170h22v14h-22zM181 170h22v14h-22zM224 170h22v14h-22zM282 170h22v14h-22z"/></g>
+  <g fill="#54ce9d"><circle cx="106" cy="200" r="3"/><circle cx="149" cy="200" r="3"/><circle cx="192" cy="200" r="3"/><circle cx="235" cy="200" r="3"/><circle cx="293" cy="200" r="3"/></g>
+</svg>

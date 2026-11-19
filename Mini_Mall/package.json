@@ -11,6 +11,7 @@
     "dev:server": "npm --workspace server run dev",
     "dev:client": "npm --workspace client run dev",
     "seed": "npm --workspace server run seed",
+    "seed:marketplace": "npm --workspace server run seed:marketplace",
     "seed:reset": "npm --workspace server run seed:reset",
     "test": "npm --workspace server test",
     "build": "npm --workspace client run build",

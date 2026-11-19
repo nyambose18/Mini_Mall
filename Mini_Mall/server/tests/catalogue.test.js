@@ -1,10 +1,18 @@
 import { after, before, beforeEach, test } from 'node:test';
 import assert from 'node:assert/strict';
+import { access } from 'node:fs/promises';
 import request from 'supertest';
+import { addMarketplaceItems } from '../src/seed/marketplace.js';
+import { seedDatabase } from '../src/seed/seed.js';
+import { replaceSeedIllustrations } from '../src/seed/photos.js';
+import { Product } from '../src/models/Product.js';
+import { Category } from '../src/models/Category.js';
+import { Order } from '../src/models/Order.js';
 import {
   addToCart,
   app,
   createCategory,
+  createOrder,
   createProduct,
   createUser,
   loginAgent,
@@ -136,4 +144,90 @@ test('approved products are searchable by model and filterable by category', asy
     ),
     true,
   );
+});
+
+test('new demos expose populated categories, local images and purchasable networking items', async () => {
+  await seedDatabase();
+  for (const product of await Product.find()) {
+    assert.match(product.images[0], /^\/images\/photos\/.+\.(jpg|png|webp)$/);
+    await access(new URL(`../../client/public${product.images[0]}`, import.meta.url));
+  }
+  const home = await request(app).get('/api/home').expect(200);
+  const categories = home.body.categories.filter((category) => /^(IT|Mechatronics) - /.test(category.name));
+  assert.equal(categories.length, 6);
+
+  for (const category of categories) {
+    const filtered = await request(app).get(`/api/products?category=${category.slug}`).expect(200);
+    assert.equal(filtered.body.products.length, 2);
+    for (const product of filtered.body.products) {
+      assert.equal(product.categoryId.id, category.id);
+      assert.equal(product.status, 'approved');
+      assert.ok(product.stock > 0);
+      for (const field of ['voltage', 'connector', 'compatibility', 'contents']) {
+        assert.ok(product[field], `${product.model} needs ${field}`);
+      }
+      await access(new URL(`../../client/public${product.images[0]}`, import.meta.url));
+      await request(app).get(`/api/products/${product.id}`).expect(200);
+    }
+  }
+
+  const search = await request(app).get('/api/products?search=MM-WR300').expect(200);
+  assert.equal(search.body.products.length, 1);
+  const buyer = await loginAgent('thabo@minimall.test', 'Buyer123!');
+  await addToCart(buyer, search.body.products[0].id);
+});
+
+test('catalogue updates preserve existing records and never reset stock or moderation on rerun', async () => {
+  const seller = await createUser({ role: 'seller', email: 'lerato@minimall.test' });
+  const buyer = await createUser();
+  const category = await createCategory();
+  const original = await createProduct({ seller, category, stock: 17 });
+  const order = await createOrder({ buyer, seller, product: original });
+  const originalBefore = await Product.findById(original.id).lean();
+  const orderBefore = await Order.findById(order.id).lean();
+
+  const first = await addMarketplaceItems();
+  assert.equal(first.productsAdded, 12);
+  const router = await Product.findOne({ model: 'MM-WR300' });
+  await Product.updateOne({ _id: router._id }, { $set: { stock: 2, priceCents: 12345, status: 'delisted' } });
+  await Category.updateOne({ _id: router.categoryId }, { $set: { active: false } });
+  const routerBefore = await Product.findById(router._id).lean();
+  const categoryBefore = await Category.findById(router.categoryId).lean();
+
+  const second = await seedDatabase();
+  assert.equal(second.skipped, true);
+  assert.equal(second.marketplace.productsAdded, 0);
+  assert.equal(await Product.countDocuments(), 13);
+  assert.equal(await Category.countDocuments(), 7);
+  assert.deepEqual(await Product.findById(original.id).lean(), originalBefore);
+  assert.deepEqual(await Order.findById(order.id).lean(), orderBefore);
+  assert.deepEqual(await Product.findById(router._id).lean(), routerBefore);
+  assert.deepEqual(await Category.findById(router.categoryId).lean(), categoryBefore);
+});
+
+test('photo replacement preserves uploads, stock, prices, moderation and unrelated sellers', async () => {
+  const seller = await createUser({ role: 'seller', email: 'lerato@minimall.test' });
+  const otherSeller = await createUser({ role: 'seller' });
+  const category = await createCategory();
+  const legacy = await createProduct({
+    seller, category, model: 'L298N', status: 'delisted', stock: 2, priceCents: 12345,
+    images: ['/images/motor-driver.svg', '/uploads/seller-photo.jpg'],
+  });
+  const uploaded = await createProduct({
+    seller, category, model: 'SG90', images: ['/uploads/custom-servo.jpg'],
+  });
+  const unrelated = await createProduct({
+    seller: otherSeller, category, model: 'L298N', images: ['/images/motor-driver.svg'],
+  });
+  const before = await Product.findById(legacy.id).lean();
+  const uploadedBefore = await Product.findById(uploaded.id).lean();
+  const unrelatedBefore = await Product.findById(unrelated.id).lean();
+
+  assert.equal(await replaceSeedIllustrations(), 1);
+  assert.deepEqual(await Product.findById(legacy.id).lean(), {
+    ...before, images: ['/images/photos/l298n.png', '/uploads/seller-photo.jpg'],
+  });
+  assert.deepEqual(await Product.findById(uploaded.id).lean(), uploadedBefore);
+  assert.deepEqual(await Product.findById(unrelated.id).lean(), unrelatedBefore);
+  assert.equal(await replaceSeedIllustrations(), 0);
 });

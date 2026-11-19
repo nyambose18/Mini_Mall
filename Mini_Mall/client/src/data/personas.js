@@ -8,7 +8,6 @@ export const PERSONAS = [
     quote: 'I need to know which orders I can pack today.',
     goals: ['List accurate parts', 'Keep online stock accurate', 'Dispatch orders she can fulfil'],
     email: 'lerato@minimall.test',
-    password: 'Seller123!',
     initials: 'LM',
   },
   {
@@ -20,7 +19,6 @@ export const PERSONAS = [
     quote: 'Will this work with my board, and can I get it before Friday?',
     goals: ['Find a compatible part', 'Stay within budget', 'Track the parcel and resolve problems'],
     email: 'thabo@minimall.test',
-    password: 'Buyer123!',
     initials: 'TD',
   },
   {
@@ -32,7 +30,6 @@ export const PERSONAS = [
     quote: 'I need to see what happened before I make a decision.',
     goals: ['Keep the catalogue accurate', 'Resolve order and refund exceptions', 'Prepare weekly sales summaries'],
     email: 'priya@minimall.test',
-    password: 'Admin123!',
     initials: 'PN',
   },
 ];

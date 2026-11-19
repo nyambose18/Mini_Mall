@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="RJ45 Ethernet patch cable illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <path d="M107 102v71c0 57 178 57 178 0V92c0-42-125-45-125 5v77c0 25 73 25 73 0v-29" fill="none" stroke="#2877ae" stroke-width="14" stroke-linecap="round"/>
+  <g fill="#c7d8e0" stroke="#6c8996" stroke-width="2"><path d="M88 63h38v42H88zM214 106h38v42h-38z"/><path d="M98 52h18v11H98zM224 95h18v11h-18z"/></g>
+  <g stroke="#d4a13e" stroke-width="3"><path d="M97 68v17m7-17v17m7-17v17m7-17v17M223 111v17m7-17v17m7-17v17m7-17v17"/></g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Five-port network switch illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <path d="m54 142 32-47h228l32 47v63H54Z" fill="#4f8992"/>
+  <rect x="54" y="142" width="292" height="63" rx="6" fill="#25545e"/>
+  <g fill="#b8cbd3"><path d="M79 161h38v29H79zM130 161h38v29h-38zM181 161h38v29h-38zM232 161h38v29h-38zM283 161h38v29h-38z"/></g>
+  <g fill="#152b32"><path d="M85 166h26v17H85zM136 166h26v17h-26zM187 166h26v17h-26zM238 166h26v17h-26zM289 166h26v17h-26z"/></g>
+  <g fill="#6be6a9"><circle cx="98" cy="197" r="3"/><circle cx="149" cy="197" r="3"/><circle cx="200" cy="197" r="3"/><circle cx="251" cy="197" r="3"/><circle cx="302" cy="197" r="3"/></g>
+</svg>

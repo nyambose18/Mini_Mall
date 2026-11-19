@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Robot chassis plate and mounting hardware illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <path d="M92 69h176l31 27v119l-31 21H92l-25-21V96Z" fill="#a8d2db" stroke="#4d8d9f" stroke-width="4"/>
+  <g fill="#eef3f5" stroke="#4d8d9f" stroke-width="2"><path d="M90 116h54v12H90zM90 151h54v12H90zM221 116h54v12h-54zM221 151h54v12h-54z"/><circle cx="112" cy="90" r="5"/><circle cx="249" cy="90" r="5"/><circle cx="112" cy="211" r="5"/><circle cx="249" cy="211" r="5"/></g>
+  <circle cx="182" cy="195" r="18" fill="#667d86"/>
+  <circle cx="182" cy="195" r="10" fill="#d8e2e6"/>
+  <g fill="#7d929c"><path d="M319 104h19v43h-9v-34h-10zM319 172h19v43h-9v-34h-10z"/></g>
+  <g stroke="#7d929c" stroke-width="4"><path d="M164 113v37m20-37v37m20-37v37"/></g>
+</svg>

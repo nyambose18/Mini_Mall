@@ -1,167 +1,147 @@
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useToast } from '../context/ToastContext.jsx';
-import { PERSONAS, canOpenPathForRole } from '../data/personas.js';
+import { canOpenPathForRole } from '../data/personas.js';
 import { InlineError } from '../components/PageStates.jsx';
 import { roleLabel, roleLanding } from '../utils/format.js';
 
+const INITIAL_FORM = { name: '', email: '', phone: '', address: '', postcode: '', password: '', confirmPassword: '' };
+
 export default function Auth() {
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const navigate = useNavigate();
-  const { user, login, demo } = useAuth();
+  const { user, login, register } = useAuth();
   const { notify } = useToast();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState(INITIAL_FORM);
+  const [role, setRole] = useState('buyer');
   const [error, setError] = useState(null);
-  const [busyRole, setBusyRole] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [applicationEmail, setApplicationEmail] = useState('');
+  const registering = params.get('mode') === 'register';
   const next = params.get('next') || '';
 
-  function destinationFor(signedInUser) {
-    if (next && canOpenPathForRole(next, signedInUser.role)) return next;
-    return roleLanding(signedInUser.role);
+  function setMode(mode) {
+    const updated = new URLSearchParams(params);
+    if (mode === 'register') updated.set('mode', mode);
+    else updated.delete('mode');
+    setParams(updated);
+    setError(null);
+    setApplicationEmail('');
+    setForm((current) => ({ ...current, password: '', confirmPassword: '' }));
+  }
+
+  function destinationFor(account) {
+    if (next.startsWith('/') && !next.startsWith('//') && canOpenPathForRole(next, account.role)) return next;
+    return roleLanding(account.role);
+  }
+
+  function update(key, value) {
+    setForm((current) => ({ ...current, [key]: value }));
+    setError(null);
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
     setError(null);
-    try {
-      const signedInUser = await login(email, password);
-      notify(`Welcome back, ${signedInUser.name}.`, 'success');
-      navigate(destinationFor(signedInUser), { replace: true });
-    } catch (caught) {
-      setError(caught);
+    if (registering && form.password !== form.confirmPassword) {
+      setError({ message: 'Your passwords do not match.', fields: { confirmPassword: 'Enter the same password again.' } });
+      return;
     }
-  }
-
-  async function handleDemo(role) {
-    setError(null);
-    setBusyRole(role);
+    setBusy(true);
     try {
-      const signedInUser = await demo(role);
-      notify(`Signed in as ${signedInUser.name} (${roleLabel(role)}).`, 'success');
-      navigate(destinationFor(signedInUser), { replace: true });
+      if (registering) {
+        const { confirmPassword, ...details } = form;
+        const result = await register({ ...details, role });
+        setForm((current) => ({ ...current, password: '', confirmPassword: '' }));
+        if (result.requiresApproval) {
+          setApplicationEmail(result.user.email);
+          return;
+        }
+        notify('Your account is ready. Welcome to Mini Mall.', 'success');
+        navigate(destinationFor(result.user), { replace: true });
+      } else {
+        const account = await login(form.email, form.password);
+        setForm((current) => ({ ...current, password: '' }));
+        notify(`Welcome back, ${account.name}.`, 'success');
+        navigate(destinationFor(account), { replace: true });
+      }
     } catch (caught) {
       setError(caught);
     } finally {
-      setBusyRole('');
+      setBusy(false);
     }
   }
 
+  function field(key, label, type = 'text', options = {}) {
+    const message = error?.fields?.[key];
+    return (
+      <div className={`field ${options.wide ? 'span-2' : ''}`}>
+        <label htmlFor={`account-${key}`}>{label}</label>
+        <input id={`account-${key}`} name={key} type={type} value={form[key]}
+          onChange={(event) => update(key, event.target.value)}
+          required={options.required} minLength={options.minLength} maxLength={options.maxLength}
+          autoComplete={options.autoComplete} aria-invalid={Boolean(message)}
+          aria-describedby={message ? `error-${key}` : undefined} />
+        {message ? <p id={`error-${key}`} className="field-error">{message}</p> : null}
+      </div>
+    );
+  }
+
   return (
-    <div className="stack">
-      <section className="page-heading auth-heading">
-        <span className="eyebrow">Sign in</span>
-        <h1>Choose a persona or use your account</h1>
-        <p className="muted">
-          Each persona has a different workspace and different permissions. Role and record
-          ownership are checked by the server, not only by the screens.
-        </p>
+    <div className="account-page stack">
+      <section className="page-heading">
+        <span className="eyebrow">Mini Mall account</span>
+        <h1>{applicationEmail ? 'Application received' : registering ? 'Create an account' : 'Sign in'}</h1>
       </section>
 
       {user ? (
-        <div className="notice notice-info">
-          <p>
-            You are signed in as <strong>{user.name}</strong> ({roleLabel(user.role)}).
-          </p>
-          <button
-            type="button"
-            className="btn btn-small btn-ghost"
-            onClick={() => navigate(roleLanding(user.role))}
-          >
-            Go to my workspace
-          </button>
-        </div>
-      ) : null}
-
-      <div className="auth-layout">
-        <section className="panel login-panel">
-          <h2>Email and password</h2>
-          <p className="muted">
-            The seeded accounts are seller, buyer and administrator accounts. The demo passwords are
-            shown on the persona cards.
-          </p>
-          <form className="form-stack" onSubmit={handleSubmit}>
-            <div className="field">
-              <label htmlFor="login-email">Email</label>
-              <input
-                id="login-email"
-                type="email"
-                autoComplete="username"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="thabo@minimall.test"
-                required
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="login-password">Password</label>
-              <input
-                id="login-password"
-                type="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                required
-              />
-            </div>
-            <InlineError error={error} />
-            <button className="btn btn-primary btn-large" type="submit">
-              Sign in
-            </button>
-          </form>
-          <p className="muted small">
-            There is no buyer self-registration in this baseline. Seller and administrator access
-            comes from seeded accounts only.
-          </p>
+        <section className="panel form-stack">
+          <p>Signed in as <strong>{user.name}</strong> ({roleLabel(user.role)}).</p>
+          <Link className="btn btn-primary" to={roleLanding(user.role)}>Go to my workspace</Link>
         </section>
-
-        <section className="persona-column" aria-label="Demo personas">
-          <div className="section-heading">
-            <div>
-              <span className="eyebrow">One-click demo sign-in</span>
-              <h2>The three personas</h2>
-            </div>
+      ) : applicationEmail ? (
+        <section className="panel form-stack" role="status">
+          <span className="badge badge-warn">Awaiting approval</span>
+          <p>Your seller application for <strong>{applicationEmail}</strong> has been submitted.</p>
+          <p className="muted">An administrator must approve your account before you can sign in and sell.</p>
+          <button type="button" className="btn btn-primary" onClick={() => setMode('login')}>Back to sign in</button>
+        </section>
+      ) : (
+        <section className="panel form-stack">
+          <div className="account-modes" role="group" aria-label="Account access">
+            <button type="button" aria-pressed={!registering} disabled={busy}
+              className={!registering ? 'account-mode active' : 'account-mode'} onClick={() => setMode('login')}>Sign in</button>
+            <button type="button" aria-pressed={registering} disabled={busy}
+              className={registering ? 'account-mode active' : 'account-mode'} onClick={() => setMode('register')}>Create account</button>
           </div>
-          {PERSONAS.map((persona) => (
-            <article key={persona.role} className={`persona-card persona-${persona.role}`}>
-              <div className="persona-card-top">
-                <span className={`avatar avatar-${persona.role}`} aria-hidden="true">
-                  {persona.initials}
-                </span>
-                <div>
-                  <h3>{persona.name}</h3>
-                  <p className="muted">
-                    {persona.title} · {persona.place} · age {persona.age}
-                  </p>
-                </div>
+          <form className="form-stack" onSubmit={handleSubmit}>
+            <fieldset disabled={busy} className="account-fields form-stack">
+              {registering ? (
+                <fieldset className="account-types">
+                  <legend>Account type</legend>
+                  <label><input type="radio" name="account-role" value="buyer" checked={role === 'buyer'} onChange={() => setRole('buyer')} />Buyer</label>
+                  <label><input type="radio" name="account-role" value="seller" checked={role === 'seller'} onChange={() => setRole('seller')} />Seller</label>
+                </fieldset>
+              ) : null}
+              {registering && role === 'seller' ? <p className="notice notice-info">Seller accounts require administrator approval.</p> : null}
+              <div className={registering ? 'form-grid' : 'form-stack'}>
+                {registering ? field('name', 'Full name', 'text', { required: true, maxLength: 100, autoComplete: 'name' }) : null}
+                {registering ? field('phone', role === 'seller' ? 'Contact number' : 'Contact number (optional)', 'tel', { required: role === 'seller', maxLength: 30, autoComplete: 'tel' }) : null}
+                {field('email', 'Email', 'email', { required: true, maxLength: 254, autoComplete: 'username', wide: registering })}
+                {registering ? field('address', 'Address (optional)', 'text', { maxLength: 300, autoComplete: 'street-address', wide: true }) : null}
+                {registering ? field('postcode', 'Postcode (optional)', 'text', { maxLength: 12, autoComplete: 'postal-code', wide: true }) : null}
+                {field('password', registering ? 'Password (at least 12 characters)' : 'Password', 'password', { required: true, minLength: registering ? 12 : undefined, autoComplete: registering ? 'new-password' : 'current-password' })}
+                {registering ? field('confirmPassword', 'Confirm password', 'password', { required: true, minLength: 12, autoComplete: 'new-password' }) : null}
               </div>
-              <p className="persona-quote">“{persona.quote}”</p>
-              <ul className="persona-goals">
-                {persona.goals.map((goal) => (
-                  <li key={goal}>{goal}</li>
-                ))}
-              </ul>
-              <div className="persona-credentials">
-                <span>{persona.email}</span>
-                <span>{persona.password}</span>
-              </div>
-              <button
-                type="button"
-                className={`btn btn-primary btn-block persona-button-${persona.role}`}
-                onClick={() => handleDemo(persona.role)}
-                disabled={Boolean(busyRole)}
-              >
-                {busyRole === persona.role ? 'Signing in…' : `Sign in as ${persona.name.split(' ')[0]}`}
+              <InlineError error={error} />
+              <button className="btn btn-primary btn-large" type="submit" disabled={busy}>
+                {busy ? 'Please wait...' : registering ? role === 'seller' ? 'Submit seller application' : 'Create buyer account' : 'Sign in'}
               </button>
-            </article>
-          ))}
-          <p className="muted small">
-            One-click sign-in works only in this local demonstration. Set <code>DEMO_LOGIN=false</code>{' '}
-            in the server environment to disable it.
-          </p>
+            </fieldset>
+          </form>
         </section>
-      </div>
+      )}
     </div>
   );
 }

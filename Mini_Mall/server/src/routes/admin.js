@@ -17,6 +17,45 @@ const router = express.Router();
 
 router.use(requireAuth, requireRole('admin'));
 
+router.get('/seller-applications', asyncHandler(async (req, res) => {
+  const status = req.query.status || 'pending';
+  if (!['pending', 'approved', 'rejected', 'all'].includes(status)) {
+    throw new AppError(400, 'INVALID_STATUS', 'Choose a valid application status.');
+  }
+  const sellers = await User.find({ role: 'seller', ...(status === 'all' ? {} : { sellerStatus: status }) })
+    .sort({ createdAt: 1 });
+  res.json({ sellers: sellers.map((seller) => ({
+    ...seller.toSafeJSON(), createdAt: seller.createdAt, sellerReviewedAt: seller.sellerReviewedAt,
+  })) });
+}));
+
+const sellerDecisionSchema = z.object({
+  decision: z.enum(['approve', 'reject']),
+  reason: z.string().trim().max(500).optional().default(''),
+}).strict().superRefine((input, context) => {
+  if (input.decision === 'reject' && input.reason.length < 3) {
+    context.addIssue({ code: z.ZodIssueCode.custom, path: ['reason'], message: 'Give a reason for declining this application.' });
+  }
+});
+
+router.post('/seller-applications/:id/decision', asyncHandler(async (req, res) => {
+  if (!isObjectId(req.params.id)) throw notFound('That seller application could not be found.');
+  const { decision, reason } = parse(sellerDecisionSchema, req.body);
+  const sellerStatus = decision === 'approve' ? 'approved' : 'rejected';
+  const seller = await User.findOneAndUpdate(
+    { _id: req.params.id, role: 'seller', sellerStatus: 'pending' },
+    { $set: { sellerStatus, sellerReviewedAt: new Date(), sellerReviewedBy: req.user._id, sellerReviewReason: reason } },
+    { new: true, runValidators: true },
+  );
+  if (!seller) {
+    const existing = await User.findOne({ _id: req.params.id, role: 'seller' });
+    if (!existing) throw notFound('That seller application could not be found.');
+    if (existing.sellerStatus === sellerStatus) return res.json({ seller: existing.toSafeJSON() });
+    throw new AppError(409, 'ALREADY_REVIEWED', 'This application has already been reviewed. Refresh the list.');
+  }
+  res.json({ seller: seller.toSafeJSON() });
+}));
+
 const feedbackSchema = z.object({
   feedback: z.string().trim().min(3, 'Explain what the seller must correct.').max(1000),
 });

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Four-channel relay module illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <rect x="40" y="85" width="320" height="146" rx="7" fill="#347c69"/>
+  <g fill="#2c83bd" stroke="#18547e" stroke-width="2"><rect x="56" y="119" width="60" height="66" rx="4"/><rect x="132" y="119" width="60" height="66" rx="4"/><rect x="208" y="119" width="60" height="66" rx="4"/><rect x="284" y="119" width="60" height="66" rx="4"/></g>
+  <g fill="#61b288"><path d="M56 193h60v26H56zM132 193h60v26h-60zM208 193h60v26h-60zM284 193h60v26h-60z"/></g>
+  <g fill="#d7e1e5"><path d="M66 202h7v7h-7zM82 202h7v7h-7zM98 202h7v7h-7zM142 202h7v7h-7zM158 202h7v7h-7zM174 202h7v7h-7zM218 202h7v7h-7zM234 202h7v7h-7zM250 202h7v7h-7zM294 202h7v7h-7zM310 202h7v7h-7zM326 202h7v7h-7z"/></g>
+  <path d="M64 104h80" stroke="#e0b55b" stroke-width="8" stroke-dasharray="5 8"/>
+</svg>

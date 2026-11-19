@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Geared stepper motor and driver illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <path d="M185 172c55 0 7 72 78 60" fill="none" stroke="#c05853" stroke-width="5"/>
+  <path d="M185 181c43 0 9 62 78 61" fill="none" stroke="#387eb7" stroke-width="5"/>
+  <rect x="58" y="116" width="164" height="68" rx="9" fill="#a7b8c2"/>
+  <circle cx="140" cy="139" r="61" fill="#d6e0e5" stroke="#8299a5" stroke-width="4"/>
+  <circle cx="140" cy="139" r="35" fill="#b9c8d0"/>
+  <rect x="132" y="90" width="16" height="54" rx="4" fill="#667e8b"/>
+  <rect x="251" y="147" width="99" height="99" rx="5" fill="#347f70"/>
+  <rect x="276" y="169" width="47" height="30" rx="3" fill="#26383d"/>
+  <rect x="266" y="211" width="67" height="18" fill="#ebeeee"/>
+  <g fill="#d2ad57"><circle cx="260" cy="156" r="3"/><circle cx="341" cy="156" r="3"/><path d="M268 164v-12h5v12zM281 164v-12h5v12zM294 164v-12h5v12zM307 164v-12h5v12z"/></g>
+</svg>

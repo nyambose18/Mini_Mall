@@ -7,6 +7,7 @@
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
     "seed": "node src/seed/seed.js",
+    "seed:marketplace": "node src/seed/marketplace.js",
     "seed:reset": "node src/seed/seed.js --reset",
     "test": "node --test --test-concurrency=1 tests/auth.test.js tests/catalogue.test.js tests/checkout.test.js tests/fulfilment.test.js tests/refunds.test.js tests/stats.test.js"
   },

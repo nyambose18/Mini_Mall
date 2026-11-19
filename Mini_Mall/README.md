@@ -1,6 +1,6 @@
 # Mini Mall
 
-A mobile-first teaching marketplace for robotics, electronics and gadget parts in South Africa.
+A mobile-first teaching marketplace for IT networking, robotics and mechatronics parts in South Africa.
 It demonstrates a complete marketplace loop with three fictional personas:
 
 | Persona | Role | Demo email | Demo password |
@@ -19,6 +19,42 @@ The loop is:
 > decided → Priya sees separate paid, pending and refunded totals.
 
 Everything is simulated. **No real money is transferred and no real courier is contacted.**
+
+## IT and mechatronics catalogue
+
+The demo includes six additional categories: IT routers, network switches, network cables,
+mechatronics motors and actuators, mechanical parts, and control modules. Twelve approved demo
+listings include Wi-Fi and wired routers, 5-port and 8-port switches, Cat6 cables, a stepper
+kit, geared motors and wheels, a robot chassis, timing belts, relays and limit switches.
+Prices and Mini Mall networking model codes are fictional teaching examples.
+
+Starting the server adds missing demo items automatically. Existing listings, stock, orders,
+category activation and moderation decisions are preserved. `npm run seed` also applies this
+additive update without resetting the database. The update alone can be run with
+`npm run seed:marketplace`; stop the local server first, or set `MONGO_URI` to the running
+database so a second MongoDB process does not try to use the same data files.
+
+## Product photos
+
+Product images are real photographs stored locally in `client/public/images/photos/`.
+Original sources, authors and license details are recorded in `sources.json` and linked
+from the site's **Photo credits** page. Generic kits and fictional Mini Mall networking
+models use representative photos; specifications and package contents remain demo data.
+Startup replaces only the old seeded illustrations and preserves seller-uploaded images.
+The optional `python scripts/download-product-photos.py` maintenance command downloads
+missing originals and rebuilds the credits page (uses Windows' verified HTTPS client).
+
+## Home page
+
+The banner rotates through eight local component photographs in a shuffled order, with
+pause, previous and next controls. Autoplay stops when the tab is hidden and starts disabled
+when reduced motion is requested. Social icons open Twitter/X, Facebook, Instagram and
+WhatsApp Web in a new tab. Their platform URLs are in `SOCIAL_LINKS` in `client/src/pages/Home.jsx`;
+replace those URLs with shop profile links when available.
+
+Social brand icons are from [Font Awesome Free](https://fontawesome.com/license/free),
+with the original attribution and license in `client/public/images/social/`. Slideshow
+controls use Lucide icons.
 
 ## What you need
 
@@ -69,9 +105,22 @@ npm run dev:client
 
 ## Sign in
 
-The `/auth` page shows three persona cards with their names, quotes, goals and demo credentials.
-Use the **Sign in as Lerato / Thabo / Priya** buttons for a one-click demo, or type an email and
-password from the table above.
+Use `/auth` to sign in with an email and password, or choose **Create account**.
+Buyers can register and shop immediately. Sellers register with a contact number and remain
+signed out until the administrator approves their application under **Seller applications**.
+The administrator can approve or decline an application, with a reason required for a decline.
+Pending and declined sellers are blocked at login and on every authenticated server request.
+
+Passwords use bcrypt hashes, are never returned by account APIs, and are not visible to the
+administrator. New passwords must contain at least 12 characters and at most 72 UTF-8 bytes.
+Administrator accounts cannot be created through public signup. The local administrator is
+`priya@minimall.test` with password `Admin123!`; the other existing demo accounts remain in
+the table above. Existing seeded sellers remain approved when upgrading the database.
+
+Password-free demo access is disabled by default (`DEMO_LOGIN=false`) and there are no public
+persona credentials or one-click login buttons in the app. Keep this setting disabled when
+using buyer registration and seller approval. Email verification and password recovery are
+not part of this local demo.
 
 Role and record ownership are checked by the server, not only hidden in the interface. For
 example, a buyer request to an administrator endpoint receives **403**.
@@ -106,7 +155,8 @@ beginning.
 | `npm run dev` | Start the API and the Vite web app together |
 | `npm run dev:server` | Start only the API on port 4000 |
 | `npm run dev:client` | Start only the web app on port 5173 |
-| `npm run seed` | Add demo data if the database is empty |
+| `npm run seed` | Seed an empty database or add missing IT and mechatronics demo items |
+| `npm run seed:marketplace` | Add only the IT and mechatronics demo items, preserving existing data |
 | `npm run seed:reset` | Delete and rebuild all demo data |
 | `npm run test` | Run the server integration tests |
 | `npm run build` | Build the React app into `client/dist` |
@@ -152,7 +202,7 @@ These defaults are configuration, not claims about South African law:
 - One seller per checkout. A mixed-seller cart is blocked with an explanation.
 - Refund approval, returned-item receipt and the simulated refund are separate events.
 
-Reviews, wishlists, coupons, buyer self-registration, real payment gateways and courier
+Reviews, wishlists, coupons, real payment gateways and courier
 integration are deliberately out of scope, matching the design pack.
 
 ## Tests
@@ -172,7 +222,7 @@ collection, EFT expiry, refund eligibility and steps, and separate dashboard tot
 - Rebuild the demo data: `npm run seed:reset`
 - Start completely fresh: stop the app, delete `Mini_Mall/data/`, then start it again.
 - Use an existing MongoDB instead of the auto-started one: set `MONGO_URI` in `server/.env`.
-- Turn off one-click demo sign-in: set `DEMO_LOGIN=false`.
+- Keep password-free demo sign-in disabled: use `DEMO_LOGIN=false` (the default).
 
 ## Troubleshooting
 

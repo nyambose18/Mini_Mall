@@ -54,6 +54,7 @@ export async function createUser({
     email,
     passwordHash: await bcrypt.hash(PASSWORD, 4),
     role,
+    ...(role === 'seller' ? { sellerStatus: 'approved' } : {}),
     phone: '070 000 0000',
     address: '1 Test Street, Johannesburg',
     postcode,

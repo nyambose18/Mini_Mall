@@ -2,4 +2,12 @@
 __pycache__/
 *.pyc
 expenses.db
+Mini_Mall/mall.db
 .streamlit/
+
+# Mini Mall (MERN)
+node_modules/
+Mini_Mall/data/
+Mini_Mall/server/uploads/
+Mini_Mall/client/dist/
+Mini_Mall/server/.env

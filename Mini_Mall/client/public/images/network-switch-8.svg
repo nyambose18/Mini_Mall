@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Eight-port network switch illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <path d="m36 142 32-47h264l32 47v63H36Z" fill="#4f8992"/>
+  <rect x="36" y="142" width="328" height="63" rx="6" fill="#25545e"/>
+  <g fill="#b8cbd3"><path d="M51 162h29v26H51zM89 162h29v26H89zM127 162h29v26h-29zM165 162h29v26h-29zM203 162h29v26h-29zM241 162h29v26h-29zM279 162h29v26h-29zM317 162h29v26h-29z"/></g>
+  <g fill="#152b32"><path d="M56 167h19v14H56zM94 167h19v14H94zM132 167h19v14h-19zM170 167h19v14h-19zM208 167h19v14h-19zM246 167h19v14h-19zM284 167h19v14h-19zM322 167h19v14h-19z"/></g>
+  <g fill="#6be6a9"><path d="M62 195h7v4h-7zM100 195h7v4h-7zM138 195h7v4h-7zM176 195h7v4h-7zM214 195h7v4h-7zM252 195h7v4h-7zM290 195h7v4h-7zM328 195h7v4h-7z"/></g>
+</svg>

@@ -27,7 +27,7 @@ export const config = {
   uploadDir: path.join(serverRoot, 'uploads'),
   jwtSecret: process.env.JWT_SECRET || 'dev-mini-mall-secret-change-me',
   jwtDays: 7,
-  demoLogin: bool(process.env.DEMO_LOGIN, true),
+  demoLogin: bool(process.env.DEMO_LOGIN, false),
   deliveryFeeCents: int(process.env.DELIVERY_FEE, 50) * 100,
   outlyingDeliveryFeeCents: int(process.env.OUTLYING_DELIVERY_FEE, 75) * 100,
   eftExpiryHours: int(process.env.EFT_EXPIRY_HOURS, 24),

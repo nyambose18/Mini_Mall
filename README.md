@@ -97,3 +97,23 @@ python -m unittest -v test_db
 
 This app is meant to run locally for one person. It has no accounts or passwords,
 and it should not be put on a public web server as-is.
+
+## Mini Mall (separate project)
+
+The `Mini_Mall/` folder contains a separate full-stack teaching marketplace built with React,
+Node.js, Express and MongoDB. It demonstrates the three personas from the design pack: Lerato
+(seller), Thabo (buyer) and Priya (administrator).
+
+To run it:
+
+```bash
+cd Mini_Mall
+npm install
+npm run dev
+```
+
+Then open <http://localhost:5173>. See [Mini_Mall/README.md](Mini_Mall/README.md) for the demo
+accounts, a click-through walkthrough, the test command and troubleshooting.
+
+Mini Mall is unrelated to the Expense Tracker above. It does not use the Python virtual
+environment or the `expenses.db` file.

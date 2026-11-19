@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Wi-Fi router illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <g stroke="#344650" stroke-width="10" stroke-linecap="round"><path d="M112 167 97 62M288 167l15-105"/></g>
+  <path d="m80 155 35-38h170l35 38v55H80Z" fill="#d4dfe3"/>
+  <rect x="80" y="155" width="240" height="55" rx="8" fill="#344650"/>
+  <g fill="#48c99a"><circle cx="105" cy="184" r="4"/><circle cx="123" cy="184" r="4"/><circle cx="141" cy="184" r="4"/></g>
+  <g fill="#afc1ca"><rect x="202" y="173" width="22" height="18"/><rect x="230" y="173" width="22" height="18"/><rect x="258" y="173" width="22" height="18"/><rect x="286" y="173" width="22" height="18"/></g>
+  <g fill="none" stroke="#347eb0" stroke-width="5" stroke-linecap="round"><path d="M167 83q33-26 66 0M181 97q19-15 38 0"/></g>
+  <circle cx="200" cy="110" r="4" fill="#347eb0"/>
+</svg>

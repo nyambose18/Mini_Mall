@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Two geared DC motors and wheels illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <g fill="#e4b13e"><rect x="55" y="79" width="123" height="65" rx="8"/><rect x="219" y="166" width="123" height="65" rx="8"/></g>
+  <g fill="#afc0c9"><rect x="44" y="91" width="51" height="42" rx="5"/><rect x="208" y="178" width="51" height="42" rx="5"/></g>
+  <g fill="#30434a"><circle cx="157" cy="127" r="45"/><circle cx="321" cy="214" r="45"/></g>
+  <g fill="#e4b13e"><circle cx="157" cy="127" r="27"/><circle cx="321" cy="214" r="27"/></g>
+  <g fill="#8dabb9"><circle cx="157" cy="127" r="7"/><circle cx="321" cy="214" r="7"/></g>
+  <g stroke="#5a747f" stroke-width="4"><path d="M32 99h12M32 125h12M196 186h12M196 212h12"/></g>
+</svg>

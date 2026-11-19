@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude-vscode__getDiagnostics",
+      "Bash(.venv/Scripts/python.exe -c \"import streamlit, pandas; print\\('streamlit', streamlit.__version__\\); print\\('pandas', pandas.__version__\\)\")",
+      "Bash(.venv/Scripts/python.exe -)",
+      "Bash(npm -v)",
+      "Bash(git --version)",
+      "Bash(npm install-scripts *)",
+      "Bash(npx prisma *)",
+      "Bash(npm start *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:4000/api/health)",
+      "Bash(curl -s http://localhost:4000/api/products)",
+      "Bash(curl -s -o /dev/null -w \"home:%{http_code}\\\\n\" http://localhost:4000/)",
+      "Bash(curl -s -c /tmp/mm-buyer.txt -H \"Content-Type: application/json\" -d '{\"role\":\"buyer\"}' http://localhost:4000/api/auth/demo)",
+      "Bash(curl -s -b /tmp/mm-buyer.txt http://localhost:4000/api/orders)",
+      "Bash(command -v chromium-cli)",
+      "Bash(chromium-cli --help)",
+      "Bash(curl -s -o /dev/null -w \"api-still-up:%{http_code}\\\\n\" --max-time 2 http://localhost:4000/api/health)",
+      "Bash(netstat -ano)",
+      "Bash(node \"C:/Users/admin/AppData/Local/Temp/find-images.mjs\")",
+      "Bash(curl -sIL --max-time 30 \"https://loremflickr.com/800/600/arduino,electronics?lock=1\")",
+      "Bash(curl -sIL --max-time 30 \"https://loremflickr.com/800/600/arduino\")",
+      "Bash(curl -sIL --max-time 20 \"https://picsum.photos/800/600\")",
+      "Bash(curl -s -o /dev/null -w \"openverse:%{http_code} %{time_total}\\\\n\" --max-time 20 \"https://api.openverse.org/v1/images/?q=arduino\")",
+      "Bash(curl -s -o /dev/null -w \"flickr:%{http_code} %{time_total}\\\\n\" --max-time 20 \"https://www.flickr.com\")",
+      "Bash(curl -s -o /dev/null -w \"google:%{http_code} %{time_total}\\\\n\" --max-time 20 \"https://www.google.com\")",
+      "Bash(curl -s -o /dev/null -w \"bing:%{http_code} %{time_total}\\\\n\" --max-time 20 \"https://www.bing.com\")",
+      "Bash(curl -sL --max-time 30 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36\" \"https://www.bing.com/search?q=arduino+uno+site%3Aunsplash.com\" -o \"C:/Users/admin/AppData/Local/Temp/bing-unsplash.html\")",
+      "Bash(curl -sL --max-time 30 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36\" \"https://www.bing.com/search?q=arduino+unsplash+electronics&setlang=en&cc=us\" -o \"C:/Users/admin/AppData/Local/Temp/bing-web2.html\")",
+      "Bash(curl -sL --max-time 30 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36\" \"https://www.bing.com/images/search?q=unsplash+circuit+board&setlang=en&cc=us\" -o \"C:/Users/admin/AppData/Local/Temp/bing-images3.html\")",
+      "Bash(curl -sL --max-time 30 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36\" \"https://www.ecosia.org/search?q=arduino%20unsplash\" -o \"C:/Users/admin/AppData/Local/Temp/ecosia.html\")",
+      "WebSearch",
+      "Bash(curl -s --max-time 30 -H \"Accept: application/vnd.github+json\" -A \"MiniMallTeachingDemo/1.0\" \"https://api.github.com/search/repositories?q=arduino+images+dataset&per_page=5\")",
+      "Bash(curl -s -o /dev/null -w \"raw:%{http_code}\\\\n\" --max-time 20 \"https://raw.githubusercontent.com/adafruit/Adafruit_Learning_System_Guides/main/README.md\")",
+      "Bash(curl -s -o /dev/null -w \"jsdelivr:%{http_code}\\\\n\" --max-time 20 \"https://cdn.jsdelivr.net/npm/react/package.json\")"
+    ]
+  }
+}

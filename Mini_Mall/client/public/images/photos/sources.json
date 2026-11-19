@@ -1,0 +1,331 @@
+[
+  {
+    "file": "arduino-uno.jpg",
+    "models": [
+      "A000066"
+    ],
+    "commons": "File:Arduino Uno - R3.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Arduino_Uno_-_R3.jpg",
+    "credit": "SparkFun Electronics from Boulder, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+    "file": "esp32.jpg",
+    "models": [
+      "ESP32-WROOM-32"
+    ],
+    "commons": "File:ESP32 Dev Board.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/ESP32_Dev_Board.jpg/960px-ESP32_Dev_Board.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:ESP32_Dev_Board.jpg",
+    "credit": "Edwiyanto",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "file": "pico-w.jpg",
+    "models": [
+      "Pico W"
+    ],
+    "source": "https://www.adafruit.com/product/5526",
+    "credit": "Adafruit Industries",
+    "license": "Manufacturer product photo",
+    "url": "https://www.adafruit.com/images/480x360/5526-01.jpg"
+  },
+  {
+    "file": "l298n.png",
+    "models": [
+      "L298N"
+    ],
+    "commons": "File:M\u00f3dulo Driver de Motor Ponte H L298N (Vista Superior).png",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/M%C3%B3dulo_Driver_de_Motor_Ponte_H_L298N_%28Vista_Superior%29.png/960px-M%C3%B3dulo_Driver_de_Motor_Ponte_H_L298N_%28Vista_Superior%29.png",
+    "source": "https://commons.wikimedia.org/wiki/File:M%C3%B3dulo_Driver_de_Motor_Ponte_H_L298N_(Vista_Superior).png",
+    "credit": "Luiz Augusto Souza de Mesquita",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+    "file": "tb6612fng.jpg",
+    "models": [
+      "TB6612FNG"
+    ],
+    "source": "https://www.adafruit.com/product/2448",
+    "credit": "Adafruit Industries",
+    "license": "Manufacturer product photo",
+    "url": "https://cdn-shop.adafruit.com/970x728/2448-06.jpg"
+  },
+  {
+    "file": "sg90.png",
+    "models": [
+      "SG90"
+    ],
+    "commons": "File:Micro Servo Motor TowerPro SG90 e Acess\u00f3rios.png",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Micro_Servo_Motor_TowerPro_SG90_e_Acess%C3%B3rios.png/960px-Micro_Servo_Motor_TowerPro_SG90_e_Acess%C3%B3rios.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Micro_Servo_Motor_TowerPro_SG90_e_Acess%C3%B3rios.png",
+    "credit": "Luiz Augusto Souza de Mesquita",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+    "file": "hc-sr04.jpg",
+    "models": [
+      "HC-SR04"
+    ],
+    "url": "https://rapidroboticsaustralia.com/cdn/shop/files/HC-SR04Module_3083482b-663a-4f32-b909-4c2e60898439.jpg?v=1726877831&width=1000",
+    "source": "https://rapidroboticsaustralia.com/products/hc-sr04-ultrasonic-module-distance-measuring-sensor",
+    "credit": "Rapid Robotics Australia",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "dht22.jpg",
+    "models": [
+      "AM2302"
+    ],
+    "commons": "File:AM2302 (DHT22) digital temperature and humidity sensor module.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/AM2302_%28DHT22%29_digital_temperature_and_humidity_sensor_module.jpg/960px-AM2302_%28DHT22%29_digital_temperature_and_humidity_sensor_module.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:AM2302_(DHT22)_digital_temperature_and_humidity_sensor_module.jpg",
+    "credit": "Suyash Dwivedi",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "file": "mpu6050.jpg",
+    "models": [
+      "MPU6050"
+    ],
+    "source": "https://serinsy.com/products/giroscopio-s103ds01-mpu-6050-gy-521",
+    "url": "https://serinsy.com/cdn/shop/files/5.jpg?v=1723650914&width=1000",
+    "credit": "SERINSY 3D",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "9v-adapter.jpg",
+    "models": [
+      "9V-1A"
+    ],
+    "source": "https://scs-dz.com/transformateur-dalimentation-9v-1a",
+    "url": "https://scs-dz.com/1838-medium_default/transformateur-dalimentation-9v-1a.jpg",
+    "credit": "SCS DZ",
+    "license": "Supplier product photo",
+    "reference": true
+  },
+  {
+    "file": "lm2596.png",
+    "models": [
+      "LM2596"
+    ],
+    "source": "https://zenithelectronics.lk/product/lm2596-dc-dc-stepdown-buck-converter-module/",
+    "url": "https://zenithelectronics.lk/wp-content/uploads/2024/12/LM2596-DC-DC-Stepdown-Buck-Converter-Module-0.png",
+    "credit": "Zenith Electronics",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "jumper-wires.jpg",
+    "models": [
+      "JW-120"
+    ],
+    "source": "https://www.daraz.com.bd/products/jumper-wire-dupont-line-20cm-male-to-male-male-to-female-and-female-to-female-dupont-cable-for-arduino-and-other-purpose-use-pack-of-120-pcs-multi-plug-i177266412.html",
+    "url": "https://static-01.daraz.com.bd/p/8d621b06865fd28ee645993115bb176b.jpg",
+    "credit": "Daraz supplier product listing",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "screwdrivers.jpg",
+    "models": [
+      "PSD-32"
+    ],
+    "commons": "File:Precision Screwdriver Set 2.jpg",
+    "reference": true,
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Precision_Screwdriver_Set_2.jpg/960px-Precision_Screwdriver_Set_2.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Precision_Screwdriver_Set_2.jpg",
+    "credit": "oomlout",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+    "file": "n20-motor.jpg",
+    "models": [
+      "N20-6V"
+    ],
+    "source": "https://www.chipskey.cc/n20-gear-motor-for-smart-car-6v-500rpm-p-15349.html",
+    "url": "https://www.chipskey.cc/images/N2203.JPG",
+    "credit": "Chipskey",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "line-sensor.jpg",
+    "models": [
+      "LFS-8"
+    ],
+    "source": "https://www.baudaeletronica.com.br/produto/modulo-seguidor-de-linha-infravermelho-8-canais.html",
+    "url": "https://cdn.awsli.com.br/2500x2500/2599/2599375/produto/2164226035111abbe12.jpg",
+    "credit": "Bau da Eletronica",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "single-relay.jpg",
+    "models": [
+      "RELAY-5V"
+    ],
+    "source": "https://www.botnroll.com/pt/digital/3357-m-dulo-rel-10a-1-canal-5v-compat-vel-com-arduino.html",
+    "url": "https://www.botnroll.com/12153-large_default/m-dulo-rel-10a-1-canal-5v-compat-vel-com-arduino.jpg",
+    "credit": "Botnroll",
+    "license": "Supplier product photo",
+    "reference": true
+  },
+  {
+    "file": "nodemcu.jpg",
+    "models": [
+      "NodeMCU-ESP8266"
+    ],
+    "commons": "File:NodeMCU DEVKIT 1.0.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/NodeMCU_DEVKIT_1.0.jpg/960px-NodeMCU_DEVKIT_1.0.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:NodeMCU_DEVKIT_1.0.jpg",
+    "credit": "Vowstar",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "file": "oled.jpg",
+    "models": [
+      "SSD1306"
+    ],
+    "source": "https://www.diytrade.com/china/pd/21172767/SSD1306_4_Pin_I2C_0_96_Inch_OLED_Display_Module.html",
+    "url": "https://img.diytrade.com/smimg/2990216/51392067-14936774-0/SSD1306_4_Pin_I2C_0_96_Inch_OLED_Display_Module/adb7.jpg",
+    "credit": "OKOELEC / DIYTrade",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "breadboard.jpg",
+    "models": [
+      "BB-830"
+    ],
+    "source": "https://www.adafruit.com/product/239",
+    "credit": "Adafruit Industries",
+    "license": "Manufacturer product photo",
+    "url": "https://www.adafruit.com/images/480x360/239-03.jpg"
+  },
+  {
+    "file": "wifi-router.jpg",
+    "models": [
+      "MM-WR300"
+    ],
+    "source": "https://www.tp-link.com/us/home-networking/wifi-router/tl-wr841n/",
+    "credit": "TP-Link",
+    "license": "Manufacturer product photo",
+    "reference": true,
+    "url": "https://static.tp-link.com/TL-WR841N_EU_14.0_01_large_1524475416205c.jpg"
+  },
+  {
+    "file": "wired-router.jpg",
+    "models": [
+      "MM-GR5"
+    ],
+    "source": "https://www.tp-link.com/us/business-networking/omada-router-wired-router/er605/",
+    "credit": "TP-Link",
+    "license": "Manufacturer product photo",
+    "reference": true,
+    "url": "https://static.tp-link.com/upload/image-line/ER605_UN_2.30_overview_01_large_20250919060139b.jpg"
+  },
+  {
+    "file": "switch-5.jpg",
+    "models": [
+      "MM-SW5G"
+    ],
+    "source": "https://www.tp-link.com/us/business-networking/soho-switch-unmanaged/tl-sg105/",
+    "credit": "TP-Link",
+    "license": "Manufacturer product photo",
+    "reference": true,
+    "url": "https://static.tp-link.com/upload/image-line/TL-SG105(UN)6_1_large_20231020072105g.jpg"
+  },
+  {
+    "file": "switch-8.jpg",
+    "models": [
+      "MM-SW8G"
+    ],
+    "source": "https://www.tp-link.com/us/business-networking/soho-switch-unmanaged/tl-sg108/",
+    "credit": "TP-Link",
+    "license": "Manufacturer product photo",
+    "reference": true,
+    "url": "https://static.tp-link.com/upload/image-line/TL-SG108_UN_5.0_01_large_20231024111419x.jpg"
+  },
+  {
+    "file": "cat6.jpg",
+    "models": [
+      "MM-CAT6-1M",
+      "MM-CAT6-5M"
+    ],
+    "source": "https://www.leroymerlin.es/productos/cable-utp-cat-6-latiguillo-rj45-cobre-lszh-gris-1m-84539584.html",
+    "url": "https://media.adeo.com/mkp/b2a1e25952434b8a072d9342eeba6f9c/media.jpg?fit=bounds&format=jpg&height=900&quality=85&width=900",
+    "credit": "Leroy Merlin marketplace supplier",
+    "license": "Supplier product photo",
+    "reference": true
+  },
+  {
+    "file": "stepper.jpg",
+    "models": [
+      "28BYJ-48-5V-KIT"
+    ],
+    "commons": "File:28BYJ-48 unipolar stepper motor with ULN2003 driver.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/28BYJ-48_unipolar_stepper_motor_with_ULN2003_driver.jpg/960px-28BYJ-48_unipolar_stepper_motor_with_ULN2003_driver.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:28BYJ-48_unipolar_stepper_motor_with_ULN2003_driver.jpg",
+    "credit": "Kushagra Keshari",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+    "file": "tt-motors.jpg",
+    "models": [
+      "MM-TT-2WD"
+    ],
+    "source": "https://www.ebay.com/itm/355857887853",
+    "url": "https://i.ebayimg.com/images/g/sVoAAOSwLxdmjjKI/s-l1200.jpg",
+    "credit": "eBay seller product listing",
+    "license": "Supplier product photo",
+    "reference": true
+  },
+  {
+    "file": "chassis.jpg",
+    "models": [
+      "MM-CHASSIS-2WD"
+    ],
+    "source": "https://shop.hamariweb.com/smart-car-chassis-2wd-bottom-acrylic-plate-2-wheel-mpid720667",
+    "url": "https://static-01.daraz.pk/p/d1deeb88f14768f9a642a1d4d6de2d7f.jpg",
+    "credit": "Daraz / Hamariweb supplier listing",
+    "license": "Supplier product photo",
+    "reference": true
+  },
+  {
+    "file": "timing-belt.jpg",
+    "models": [
+      "MM-GT2-KIT"
+    ],
+    "source": "https://merkatronix.com/todos-los-productos/2369-kit-correa-gt2-2-poleas-llave-impresora-3d-cnc.html",
+    "url": "https://merkatronix.com/20825-superlarge_default/kit-correa-gt2-2-poleas-llave-impresora-3d-cnc.jpg",
+    "credit": "Merkatronix",
+    "license": "Supplier product photo",
+    "reference": true
+  },
+  {
+    "file": "relay-4.jpg",
+    "models": [
+      "MM-RELAY4-5V"
+    ],
+    "source": "https://witblox.com/products/4-channel-relay-module-5v",
+    "url": "https://witblox.com/cdn/shop/files/products_2F4-channel-relay-module-5v_2FCzAEhQoRIu.jpg?v=1717490949",
+    "credit": "WitBlox",
+    "license": "Supplier product photo"
+  },
+  {
+    "file": "limit-switch.jpg",
+    "models": [
+      "MM-LIMIT-3"
+    ],
+    "reference": true,
+    "url": "https://sayal.com/images_c/SGDM-7385.JPG",
+    "source": "https://secure.sayal.com/store4/prodetails.php?SKU=260189",
+    "credit": "SAYAL Electronics",
+    "license": "Supplier product photo"
+  }
+]

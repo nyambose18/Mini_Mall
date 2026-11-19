@@ -18,6 +18,7 @@ import SellerOrders from './pages/SellerOrders.jsx';
 import AdminCatalogue from './pages/AdminCatalogue.jsx';
 import AdminOrders from './pages/AdminOrders.jsx';
 import AdminStatistics from './pages/AdminStatistics.jsx';
+import AdminSellers from './pages/AdminSellers.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
               <Route path="products" element={<Products />} />
               <Route path="products/:id" element={<ProductDetail />} />
               <Route path="auth" element={<Auth />} />
+              <Route path="admin/sellers" element={<RequireRole role="admin"><AdminSellers /></RequireRole>} />
 
               <Route
                 path="cart"

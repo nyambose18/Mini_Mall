@@ -40,6 +40,15 @@ export function readUserFromToken(req) {
   }
 }
 
+export function requireApprovedSeller(user) {
+  if (user.role !== 'seller' || user.sellerStatus === 'approved') return;
+  if (user.sellerStatus === 'rejected') {
+    throw new AppError(403, 'SELLER_REJECTED',
+      `Your seller application was declined.${user.sellerReviewReason ? ` ${user.sellerReviewReason}` : ''}`);
+  }
+  throw new AppError(403, 'SELLER_PENDING', 'Your seller account is awaiting administrator approval.');
+}
+
 export async function requireAuth(req, res, next) {
   try {
     const payload = readUserFromToken(req);
@@ -50,6 +59,7 @@ export async function requireAuth(req, res, next) {
     if (!user) {
       throw new AppError(401, 'UNAUTHENTICATED', 'Your session is no longer valid. Please sign in again.');
     }
+    requireApprovedSeller(user);
     req.user = user;
     next();
   } catch (error) {

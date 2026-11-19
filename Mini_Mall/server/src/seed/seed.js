@@ -12,6 +12,8 @@ import { connectDb, disconnectDb } from '../db.js';
 import { eftReference, nextOrderNumber } from '../utils/refs.js';
 import { quoteFor } from '../utils/pricing.js';
 import { slugify } from '../utils/text.js';
+import { addMarketplaceItems } from './marketplace.js';
+import { productPhoto } from './photos.js';
 
 const DEMO_PASSWORDS = {
   seller: 'Seller123!',
@@ -436,7 +438,7 @@ export async function seedDatabase({ reset = false, now = new Date() } = {}) {
   }
 
   if ((await User.countDocuments()) > 0) {
-    return { skipped: true };
+    return { skipped: true, marketplace: await addMarketplaceItems({ now }) };
   }
 
   const [sellerHash, buyerHash, adminHash] = await Promise.all([
@@ -450,6 +452,7 @@ export async function seedDatabase({ reset = false, now = new Date() } = {}) {
     email: 'lerato@minimall.test',
     passwordHash: sellerHash,
     role: 'seller',
+    sellerStatus: 'approved',
     phone: '071 555 0101',
     address: '14 Main Reef Road, Germiston',
     postcode: '1401',
@@ -477,6 +480,7 @@ export async function seedDatabase({ reset = false, now = new Date() } = {}) {
     email: 'sipho@minimall.test',
     passwordHash: sellerHash,
     role: 'seller',
+    sellerStatus: 'approved',
     phone: '074 555 0122',
     address: '22 Chris Hani Road, Soweto',
     postcode: '1801',
@@ -503,7 +507,7 @@ export async function seedDatabase({ reset = false, now = new Date() } = {}) {
       description: row.description,
       priceCents: row.price * 100,
       stock: row.stock,
-      images: [`/images/${row.image}`],
+      images: [productPhoto(row.model, `/images/${row.image}`)],
       status,
       reviewFeedback: row.reviewFeedback || '',
       submittedAt: ['pending', 'changes_requested', 'delisting_requested'].includes(status)
@@ -746,11 +750,12 @@ export async function seedDatabase({ reset = false, now = new Date() } = {}) {
     }
   }
 
+  const marketplace = await addMarketplaceItems({ now });
   return {
     skipped: false,
     users: [lerato.email, thabo.email, priya.email, sipho.email],
-    categories: CATEGORY_NAMES.length,
-    products: PRODUCTS.length,
+    categories: CATEGORY_NAMES.length + marketplace.categories,
+    products: PRODUCTS.length + marketplace.productsAdded,
     orders: orders.length,
     refunds: 2,
   };
@@ -763,7 +768,7 @@ if (isDirectRun) {
   await connectDb();
   const result = await seedDatabase({ reset: process.argv.includes('--reset') });
   if (result.skipped) {
-    console.log('[seed] database already has users; use "npm run seed:reset" to rebuild the demo data');
+    console.log(`[seed] existing demo preserved; added ${result.marketplace.productsAdded} marketplace products`);
   } else {
     console.log('[seed] demo data created');
     console.log(`[seed] users: ${result.users.join(', ')}`);

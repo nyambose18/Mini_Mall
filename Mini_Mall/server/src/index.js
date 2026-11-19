@@ -2,13 +2,24 @@ import { createApp } from './app.js';
 import { config } from './config.js';
 import { connectDb, disconnectDb } from './db.js';
 import { isDatabaseEmpty, seedDatabase } from './seed/seed.js';
+import { addMarketplaceItems } from './seed/marketplace.js';
 import { releaseExpiredEftOrders } from './services/orders.js';
+import { User } from './models/User.js';
 
 await connectDb();
+
+// Preserve access for the two sellers created before registration existed.
+await User.updateMany(
+  { role: 'seller', email: { $in: ['lerato@minimall.test', 'sipho@minimall.test'] }, sellerStatus: { $exists: false } },
+  { $set: { sellerStatus: 'approved' } },
+  { timestamps: false },
+);
 
 if (await isDatabaseEmpty()) {
   console.log('[seed] empty database — adding demo data');
   await seedDatabase();
+} else {
+  await addMarketplaceItems();
 }
 
 const app = createApp();

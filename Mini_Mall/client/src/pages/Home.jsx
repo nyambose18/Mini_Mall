@@ -3,7 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useApi } from '../hooks/useApi.js';
 import { LoadingPage, ErrorNotice } from '../components/PageStates.jsx';
 import ProductCard from '../components/ProductCard.jsx';
+import HeroPhotos from '../components/HeroPhotos.jsx';
 import { PERSONAS } from '../data/personas.js';
+
+const SOCIAL_LINKS = [
+  { name: 'Twitter / X', icon: 'twitter', className: 'social-twitter', href: 'https://x.com/' },
+  { name: 'Facebook', icon: 'facebook-f', className: 'social-facebook', href: 'https://www.facebook.com/' },
+  { name: 'Instagram', icon: 'instagram', className: 'social-instagram', href: 'https://www.instagram.com/' },
+  { name: 'WhatsApp', icon: 'whatsapp', className: 'social-whatsapp', href: 'https://web.whatsapp.com/' },
+];
 
 export default function Home() {
   const { data, loading, error, reload } = useApi('/home');
@@ -19,12 +27,12 @@ export default function Home() {
   return (
     <div className="stack">
       <section className="hero">
+        <HeroPhotos />
         <div className="hero-copy">
-          <span className="eyebrow">South African robotics marketplace</span>
-          <h1>Parts that fit. Orders that move.</h1>
+          <span className="eyebrow">IT, robotics &amp; mechatronics</span>
+          <h1>Mini Mall</h1>
           <p>
-            Find the right board, driver or sensor with the specification details that matter —
-            voltage, connector and compatibility — then follow the order from payment to parcel.
+            Find routers, boards, sensors and mechatronics parts for your next build.
           </p>
           <form className="hero-search" onSubmit={submitSearch} role="search">
             <label className="sr-only" htmlFor="home-search">
@@ -35,7 +43,7 @@ export default function Home() {
               type="search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search by model, e.g. L298N"
+              placeholder="Search parts"
             />
             <button className="btn btn-primary" type="submit">
               Search parts
@@ -45,25 +53,19 @@ export default function Home() {
             <Link className="btn btn-ghost" to="/products">
               Browse all parts
             </Link>
-            <Link className="btn btn-ghost" to="/auth">
-              Meet the three personas
+            <Link className="btn btn-ghost" to="/auth?mode=register">
+              Create account
             </Link>
           </div>
-        </div>
-        <div className="hero-board" aria-hidden="true">
-          <div className="hero-chip">
-            <span>L298N</span>
-            <small>5–35 V · dual H-bridge</small>
-          </div>
-          <div className="hero-chip hero-chip-mid">
-            <span>HC-SR04</span>
-            <small>5 V · distance sensor</small>
-          </div>
-          <div className="hero-chip hero-chip-low">
-            <span>ESP32</span>
-            <small>3.3 V · Wi-Fi</small>
-          </div>
-          <div className="hero-wire" />
+          <nav className="hero-social-links" aria-label="Social media">
+            {SOCIAL_LINKS.map((social) => (
+              <a key={social.icon} href={social.href} className={`social-link ${social.className}`}
+                aria-label={`${social.name} (opens in a new tab)`} title={social.name}
+                target="_blank" rel="noopener noreferrer">
+                <img src={`/images/social/${social.icon}.svg`} width="21" height="21" alt="" />
+              </a>
+            ))}
+          </nav>
         </div>
       </section>
 

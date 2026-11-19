@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Timing belt and two pulleys illustration">
+  <rect width="400" height="300" fill="#eef3f5"/>
+  <path d="M91 106c-51 0-51 93 0 93h207c50 0 50-93 0-93H108" fill="none" stroke="#344950" stroke-width="13"/>
+  <path d="M91 106c-51 0-51 93 0 93h207c50 0 50-93 0-93H108" fill="none" stroke="#7b959e" stroke-width="4" stroke-dasharray="4 7"/>
+  <g fill="#bccbd2" stroke="#6d8793" stroke-width="3"><circle cx="120" cy="153" r="35"/><circle cx="270" cy="153" r="35"/></g>
+  <g fill="#829eac"><circle cx="120" cy="153" r="20"/><circle cx="270" cy="153" r="20"/></g>
+  <g fill="#334b57"><circle cx="120" cy="153" r="8"/><circle cx="270" cy="153" r="8"/></g>
+  <path d="M173 233h52v-17" fill="none" stroke="#6d8793" stroke-width="5" stroke-linecap="round"/>
+</svg>

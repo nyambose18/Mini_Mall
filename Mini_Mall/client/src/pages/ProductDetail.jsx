@@ -98,12 +98,18 @@ export default function ProductDetail() {
           <div className="detail-image">
             <img
               src={images[imageIndex]}
-              alt={`${product.title} illustration`}
+              alt={`${product.title} product photo`}
               onError={(event) => {
                 event.currentTarget.src = '/images/placeholder.svg';
               }}
             />
           </div>
+          {images[imageIndex]?.startsWith('/images/photos/') ? (
+            <p className="photo-caption muted small">
+              Product reference photo.{' '}
+              <a href="/images/photos/credits.html" target="_blank" rel="noreferrer">Photo credits</a>
+            </p>
+          ) : null}
           {images.length > 1 ? (
             <div className="thumb-row">
               {images.map((image, index) => (

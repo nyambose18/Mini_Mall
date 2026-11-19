@@ -18,8 +18,16 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
-    passwordHash: { type: String, required: true },
+    passwordHash: { type: String, required: true, select: false },
     role: { type: String, enum: ['buyer', 'seller', 'admin'], required: true },
+    sellerStatus: {
+      type: String,
+      enum: ['pending', 'approved', 'rejected'],
+      default: function sellerStatus() { return this.role === 'seller' ? 'pending' : undefined; },
+    },
+    sellerReviewedAt: { type: Date, default: null },
+    sellerReviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+    sellerReviewReason: { type: String, default: '' },
     phone: { type: String, default: '' },
     address: { type: String, default: '' },
     postcode: { type: String, default: '' },
@@ -37,6 +45,10 @@ userSchema.methods.toSafeJSON = function toSafeJSON() {
     phone: this.phone,
     address: this.address,
     postcode: this.postcode,
+    ...(this.role === 'seller' ? {
+      sellerStatus: this.sellerStatus,
+      sellerReviewReason: this.sellerReviewReason,
+    } : {}),
   };
 };
 
