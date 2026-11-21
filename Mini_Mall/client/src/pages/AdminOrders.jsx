@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { api } from '../api/client.js';
 import { useToast } from '../context/ToastContext.jsx';
@@ -112,6 +113,7 @@ function RefundDecision({ refund, onDone }) {
 
 export default function AdminOrders() {
   const { notify } = useToast();
+  const [search, setSearch] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
   const [fulfilmentStatus, setFulfilmentStatus] = useState('');
   const [sellerId, setSellerId] = useState('');
@@ -128,7 +130,12 @@ export default function AdminOrders() {
   const refundsApi = useApi('/admin/refunds');
   const sellersApi = useApi('/admin/sellers');
 
-  const orders = ordersApi.data?.orders || [];
+  const applications = useApi('/admin/seller-applications?status=pending');
+  const query = search.trim().toLowerCase();
+  const orders = (ordersApi.data?.orders || []).filter((order) =>
+    !query || [order.orderNumber, order.fulfilment.trackingNumber, order.buyerId?.name,
+      order.buyerId?.email, order.sellerId?.name].some((value) => value?.toLowerCase().includes(query)),
+  );
   const refunds = refundsApi.data?.refunds || [];
 
   function refresh() {
@@ -163,8 +170,29 @@ export default function AdminOrders() {
         </p>
       </section>
 
+      <section className="panel">
+        <div className="section-heading">
+          <div><h2>Seller applications</h2>
+            {applications.data && <p>{applications.data.sellers.length} awaiting approval</p>}
+          </div>
+          <Link className="btn btn-primary" to="/admin/sellers">Review applications</Link>
+        </div>
+        <div className="button-row">
+          <Link className="btn btn-ghost" to="/admin/catalogue">Manage catalogue</Link>
+          <Link className="btn btn-ghost" to="/admin/statistics">View sales statistics</Link>
+          <button className="btn btn-ghost" type="button" onClick={() => { refresh(); applications.reload(); }}>
+            Refresh queues
+          </button>
+        </div>
+      </section>
+
       <section className="panel filter-panel">
         <div className="filter-row">
+          <div className="field">
+            <label htmlFor="admin-order-search">Find an order</label>
+            <input id="admin-order-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)}
+              placeholder="Order number, tracking, buyer or seller" />
+          </div>
           <div className="field">
             <label htmlFor="admin-payment">Payment</label>
             <select
@@ -224,7 +252,7 @@ export default function AdminOrders() {
         <div className="section-heading">
           <div>
             <span className="eyebrow">Payment and fulfilment</span>
-            <h2>Order exceptions</h2>
+            <h2>Order tracking</h2>
           </div>
         </div>
         {!orders.length ? (

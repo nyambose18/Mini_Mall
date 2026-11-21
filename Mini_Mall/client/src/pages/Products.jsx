@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useApi } from '../hooks/useApi.js';
 import { ErrorNotice, LoadingPage, EmptyState } from '../components/PageStates.jsx';
 import ProductCard from '../components/ProductCard.jsx';
+import PictureSearch from '../components/PictureSearch.jsx';
 
 export default function Products() {
   const [params, setParams] = useSearchParams();
@@ -84,6 +85,9 @@ export default function Products() {
         ) : null}
       </section>
 
+      <PictureSearch products={productsApi.loading || productsApi.error ? null : productsApi.data?.products}
+        catalogueUnavailable={Boolean(productsApi.error)} />
+
       {productsApi.loading ? <LoadingPage label="Finding parts…" /> : null}
       {productsApi.error ? (
         <ErrorNotice error={productsApi.error} onRetry={productsApi.reload} />
@@ -94,7 +98,7 @@ export default function Products() {
 
       {!productsApi.loading && !productsApi.error ? (
         <>
-          <p className="result-count">
+          <p className="result-count" role="status">
             {products.length} {products.length === 1 ? 'part' : 'parts'}
             {search ? ` matching “${search}”` : ''}
           </p>

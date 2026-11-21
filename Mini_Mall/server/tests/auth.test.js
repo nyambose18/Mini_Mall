@@ -134,7 +134,7 @@ test('registration validates password length, UTF-8 byte limits and seller conta
 
 test('a seller cannot sign in or use a token until an administrator approves the application', async () => {
   const applicant = request.agent(app);
-  const input = { ...registration, role: 'seller', phone: '071 123 4567' };
+  const input = { ...registration, role: 'seller', phone: '071 123 4567', companyName: 'Example Parts' };
   const registered = await applicant.post('/api/auth/register').send(input).expect(201);
   assert.equal(registered.body.requiresApproval, true);
   assert.equal(registered.body.user.sellerStatus, 'pending');
@@ -153,6 +153,7 @@ test('a seller cannot sign in or use a token until an administrator approves the
   const adminAgent = await loginAgent(admin.email);
   const queue = await adminAgent.get('/api/admin/seller-applications').expect(200);
   assert.equal(queue.body.sellers[0].id, pending.id);
+  assert.equal(queue.body.sellers[0].companyName, 'Example Parts');
   assert.equal(queue.body.sellers[0].passwordHash, undefined);
   await adminAgent.post(`/api/admin/seller-applications/${pending.id}/decision`).send({ decision: 'approve' }).expect(200);
   const approved = await User.findById(pending.id);

@@ -150,6 +150,8 @@ export default function Checkout() {
             <label htmlFor="checkout-postcode">Postcode</label>
             <input
               id="checkout-postcode"
+              aria-describedby={quoteError ? 'postcode-hint postcode-error' : 'postcode-hint'}
+              aria-invalid={Boolean(quoteError)}
               inputMode="numeric"
               pattern="\d{4}"
               maxLength={4}
@@ -158,13 +160,13 @@ export default function Checkout() {
               autoComplete="postal-code"
               required
             />
-            <p className="field-hint">A 4-digit South African postcode, for example 2001.</p>
-            {quoteError ? <p className="field-error">{quoteError}</p> : null}
+            <p id="postcode-hint" className="field-hint">A 4-digit South African postcode, for example 2001.</p>
+            {quoteError ? <p id="postcode-error" className="field-error" role="alert">{quoteError}</p> : null}
           </div>
 
           {quoteLoading ? <p className="muted small">Checking the delivery estimate…</p> : null}
           {quote ? (
-            <div className="quote-box">
+            <div className="quote-box" role="status">
               <div>
                 <span className="muted small">Delivery fee</span>
                 <strong>{money(quote.feeCents)}</strong>
@@ -182,8 +184,9 @@ export default function Checkout() {
             </div>
           ) : null}
 
-          <h2>Payment</h2>
-          <div className="payment-options">
+          <fieldset className="payment-group">
+            <legend>Payment method</legend>
+            <div className="payment-options">
             <label className={paymentMethod === 'eft' ? 'payment-option selected' : 'payment-option'}>
               <input
                 type="radio"
@@ -215,7 +218,8 @@ export default function Checkout() {
                 </small>
               </span>
             </label>
-          </div>
+            </div>
+          </fieldset>
 
           {codBlocked ? (
             <p className="notice notice-warn">

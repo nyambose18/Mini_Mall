@@ -51,8 +51,8 @@ export default function Auth() {
     setBusy(true);
     try {
       if (registering) {
-        const { confirmPassword, ...details } = form;
-        const result = await register({ ...details, role });
+        const { confirmPassword, companyName, ...details } = form;
+        const result = await register({ ...details, role, ...(role === 'seller' ? { companyName: companyName || '' } : {}) });
         setForm((current) => ({ ...current, password: '', confirmPassword: '' }));
         if (result.requiresApproval) {
           setApplicationEmail(result.user.email);
@@ -78,7 +78,7 @@ export default function Auth() {
     return (
       <div className={`field ${options.wide ? 'span-2' : ''}`}>
         <label htmlFor={`account-${key}`}>{label}</label>
-        <input id={`account-${key}`} name={key} type={type} value={form[key]}
+        <input id={`account-${key}`} name={key} type={type} value={form[key] ?? ''}
           onChange={(event) => update(key, event.target.value)}
           required={options.required} minLength={options.minLength} maxLength={options.maxLength}
           autoComplete={options.autoComplete} aria-invalid={Boolean(message)}
@@ -127,6 +127,7 @@ export default function Auth() {
               {registering && role === 'seller' ? <p className="notice notice-info">Seller accounts require administrator approval.</p> : null}
               <div className={registering ? 'form-grid' : 'form-stack'}>
                 {registering ? field('name', 'Full name', 'text', { required: true, maxLength: 100, autoComplete: 'name' }) : null}
+                {registering && role === 'seller' ? field('companyName', 'Company name (optional)', 'text', { maxLength: 120, autoComplete: 'organization' }) : null}
                 {registering ? field('phone', role === 'seller' ? 'Contact number' : 'Contact number (optional)', 'tel', { required: role === 'seller', maxLength: 30, autoComplete: 'tel' }) : null}
                 {field('email', 'Email', 'email', { required: true, maxLength: 254, autoComplete: 'username', wide: registering })}
                 {registering ? field('address', 'Address (optional)', 'text', { maxLength: 300, autoComplete: 'street-address', wide: true }) : null}

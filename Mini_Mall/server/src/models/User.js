@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema(
       enum: ['pending', 'approved', 'rejected'],
       default: function sellerStatus() { return this.role === 'seller' ? 'pending' : undefined; },
     },
+    companyName: { type: String, trim: true, default: '' },
     sellerReviewedAt: { type: Date, default: null },
     sellerReviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
     sellerReviewReason: { type: String, default: '' },
@@ -46,6 +47,7 @@ userSchema.methods.toSafeJSON = function toSafeJSON() {
     address: this.address,
     postcode: this.postcode,
     ...(this.role === 'seller' ? {
+      companyName: this.companyName,
       sellerStatus: this.sellerStatus,
       sellerReviewReason: this.sellerReviewReason,
     } : {}),

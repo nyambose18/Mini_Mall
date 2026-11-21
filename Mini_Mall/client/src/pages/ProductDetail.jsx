@@ -119,6 +119,7 @@ export default function ProductDetail() {
                   className={index === imageIndex ? 'thumb thumb-active' : 'thumb'}
                   onClick={() => setImageIndex(index)}
                   aria-label={`Show image ${index + 1}`}
+                  aria-pressed={index === imageIndex}
                 >
                   <img src={image} alt="" />
                 </button>

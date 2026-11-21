@@ -34,7 +34,8 @@ function SellerApplication({ seller, onDone }) {
     <article className="seller-application">
       <div className="seller-application-summary">
         <div className="stack seller-contact">
-          <h2>{seller.name}</h2>
+          <h2>{seller.companyName || seller.name}</h2>
+          {seller.companyName && <span>Contact: {seller.name}</span>}
           <a href={`mailto:${seller.email}`}>{seller.email}</a>
           {seller.phone ? <span>{seller.phone}</span> : null}
           {seller.address || seller.postcode ? <p className="muted">{[seller.address, seller.postcode].filter(Boolean).join(', ')}</p> : null}
@@ -73,9 +74,13 @@ function SellerApplication({ seller, onDone }) {
 }
 
 export default function AdminSellers() {
+  const [search, setSearch] = useState('');
   const [status, setStatus] = useState('pending');
   const applications = useApi(`/admin/seller-applications?status=${status}`);
-  const sellers = applications.data?.sellers || [];
+  const query = search.trim().toLowerCase();
+  const sellers = (applications.data?.sellers || []).filter((seller) =>
+    !query || [seller.name, seller.companyName, seller.email].some((value) => value?.toLowerCase().includes(query)),
+  );
   return (
     <div className="stack">
       <section className="page-heading">
@@ -83,6 +88,11 @@ export default function AdminSellers() {
         <h1>Seller applications</h1>
       </section>
       <div className="seller-application-filter">
+        <div className="field">
+          <label htmlFor="seller-search">Find an applicant</label>
+          <input id="seller-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)}
+            placeholder="Person, company or email" />
+        </div>
         <div className="field">
           <label htmlFor="seller-status">Application status</label>
           <select id="seller-status" value={status} onChange={(event) => setStatus(event.target.value)}>

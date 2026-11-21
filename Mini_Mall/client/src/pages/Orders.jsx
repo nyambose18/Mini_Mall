@@ -24,6 +24,7 @@ const FULFILMENT_FILTERS = [
 ];
 
 export default function Orders() {
+  const [search, setSearch] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
   const [fulfilmentStatus, setFulfilmentStatus] = useState('');
 
@@ -34,13 +35,18 @@ export default function Orders() {
     `/orders${params.toString() ? `?${params}` : ''}`,
   );
 
-  const orders = data?.orders || [];
+  const query = search.trim().toLowerCase();
+  const orders = (data?.orders || []).filter((order) =>
+    !query || [order.orderNumber, order.fulfilment.trackingNumber, ...order.items.map((item) => item.title)]
+      .some((value) => value?.toLowerCase().includes(query)),
+  );
 
   return (
     <div className="stack">
       <section className="page-heading">
         <span className="eyebrow">Buyer orders</span>
         <h1>Your orders</h1>
+        <p>Find a past order and open its details to see delivery updates and tracking.</p>
         <p className="muted">
           Payment and fulfilment are shown separately, so an EFT delay does not look like a delivery
           delay.
@@ -49,6 +55,11 @@ export default function Orders() {
 
       <section className="panel filter-panel">
         <div className="filter-row">
+          <div className="field">
+            <label htmlFor="orders-search">Find an order</label>
+            <input id="orders-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)}
+              placeholder="Order number, tracking number or item" />
+          </div>
           <div className="field">
             <label htmlFor="orders-payment">Payment status</label>
             <select
@@ -77,11 +88,12 @@ export default function Orders() {
               ))}
             </select>
           </div>
-          {paymentStatus || fulfilmentStatus ? (
+          {search || paymentStatus || fulfilmentStatus ? (
             <button
               type="button"
               className="text-button"
               onClick={() => {
+                setSearch('');
                 setPaymentStatus('');
                 setFulfilmentStatus('');
               }}
@@ -139,6 +151,7 @@ export default function Orders() {
                 <Link className="text-link" to={`/orders/${order.id}`}>
                   Open order details
                 </Link>
+                {order.fulfilment.trackingNumber && <span className="muted small">Tracking: {order.fulfilment.trackingNumber}</span>}
                 {order.canConfirmReceipt ? (
                   <span className="muted small">Parcel dispatched — receipt can be confirmed inside.</span>
                 ) : null}

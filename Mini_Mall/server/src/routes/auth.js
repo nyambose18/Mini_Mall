@@ -27,6 +27,7 @@ const registerSchema = z.object({
     'Use a password of no more than 72 UTF-8 bytes.',
   ),
   role: z.enum(['buyer', 'seller']),
+  companyName: z.string().trim().max(120).optional().default(''),
   phone: z.string().trim().max(30).optional().default(''),
   address: z.string().trim().max(300).optional().default(''),
   postcode: z.string().trim().max(12).optional().default(''),

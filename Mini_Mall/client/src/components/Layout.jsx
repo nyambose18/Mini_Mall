@@ -1,4 +1,5 @@
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useToast } from '../context/ToastContext.jsx';
 import { roleLabel, roleLanding } from '../utils/format.js';
@@ -12,6 +13,16 @@ export default function Layout() {
   const { user, logout } = useAuth();
   const { notify } = useToast();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const main = useRef(null);
+  const previousRoute = useRef(pathname);
+
+  useEffect(() => {
+    if (previousRoute.current !== pathname) {
+      previousRoute.current = pathname;
+      main.current?.focus();
+    }
+  }, [pathname]);
 
   const accountHref = user ? roleLanding(user.role) : '/auth';
 
@@ -23,6 +34,10 @@ export default function Layout() {
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main-content" onClick={(event) => {
+        event.preventDefault();
+        main.current?.focus();
+      }}>Skip to main content</a>
       <header className="site-header">
         <div className="header-inner">
           <Link className="brand" to="/" aria-label="Mini Mall home">
@@ -125,7 +140,7 @@ export default function Layout() {
         ) : null}
       </header>
 
-      <main className="page">
+      <main id="main-content" className="page" ref={main} tabIndex={-1}>
         <Outlet />
       </main>
 
@@ -153,7 +168,7 @@ export default function Layout() {
         </div>
       </footer>
 
-      <nav className="mobile-tabs" aria-label="Mobile navigation">
+      <nav className={user?.role === 'buyer' ? 'mobile-tabs with-orders' : 'mobile-tabs'} aria-label="Mobile navigation">
         <NavLink
           to="/"
           end
@@ -176,6 +191,12 @@ export default function Layout() {
           <Icon name="bag" />
           <span>Cart</span>
         </NavLink>
+        {user?.role === 'buyer' && (
+          <NavLink to="/orders" className={({ isActive }) => (isActive ? 'mobile-tab mobile-tab-active' : 'mobile-tab')}>
+            <Icon name="orders" />
+            <span>Orders</span>
+          </NavLink>
+        )}
         <NavLink
           to={accountHref}
           className={({ isActive }) => (isActive ? 'mobile-tab mobile-tab-active' : 'mobile-tab')}
